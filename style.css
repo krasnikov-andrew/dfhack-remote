@@ -1,0 +1,15 @@
+.screen .tile {
+    height: 15px;
+    vertical-align: top;
+}
+
+.screen .row {
+    display: inline-block;
+    width: 10px;
+}
+
+.screen {
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bolder;
+}

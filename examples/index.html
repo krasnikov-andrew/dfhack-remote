@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple info</title>
+</head>
+<body>
+<p>Get simple info about Dwarf Fortress client</p>
+<script src="./build/bundle.js"></script>
+<script src="./utils.js"></script>
+<script src="./script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<p>
+    CopyScreen: <code id='CopyScreen'></code><br>
+</p>
+<div id="myapp"></div>
+<script async>
+    // const df = newDwarfClient(async function tick() {
+    //     try {
+    //         let response = await df.CopyScreen()
+    //         let monitor = "<br>"
+    //         let i = 0
+    //         for (let x = 0; x < response.height; x++) {
+    //             for (let y = 0; y < response.width; y++) {
+    //                 i = y * response.height + x
+    //                 monitor += "<div style='" +
+    //                     "display: inline-block; " +
+    //                     "height: 15px; " +
+    //                     "width: 15px; " +
+    //                     "vertical-align: top; " +
+    //                     "color: " + numberToColor(response.tiles[i].foreground) + "; " +
+    //                     "background-color: " + numberToColor(response.tiles[i].background) + ";'>" +
+    //                     String.fromCharCode(response.tiles[i].character) + "</div>"
+    //
+    //             }
+    //             monitor += "<br>"
+    //
+    //         }
+    //
+    //         CopyScreen.innerHTML = monitor
+    //     } catch {
+    //     }
+    //     setTimeout(tick, 0)
+    // })
+
+    const app = Elm.Main.init({
+        node: document.getElementById('myapp')
+    });
+
+    const df = newDwarfClient(() => {
+
+        app.ports.sendMessage.subscribe(async () => {
+            let response = await df.CopyScreen()
+            app.ports.messageReceiver.send(response);
+        })
+    })
+</script>
+</body>
+</html>
