@@ -53,6 +53,12 @@
             let response = await df.CopyScreen()
             app.ports.messageReceiver.send(response);
         })
+
+        setTimeout(async function tick() {
+            let response = await df.CopyScreen()
+            app.ports.messageReceiver.send(response)
+            setTimeout(tick, 0);
+        }, 0);
     })
 </script>
 </body>

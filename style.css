@@ -1,10 +1,10 @@
 .screen .tile {
     height: 15px;
-    vertical-align: top;
 }
 
 .screen .row {
     display: inline-block;
+    vertical-align: top;
     width: 10px;
 }
 
